@@ -38,6 +38,24 @@ def restoreBrokenWords2 (inputString, standardDic):
 			newString = newString.replace(bw, nonDash)
 	return newString
 
+
+
+#this case is when a word is broken without any connecting dash
+def restoreBrokenWords3 (inputString, standardDic):
+
+	brokenWords = re.findall(r'\b\w+\n+\w+', inputString)
+	
+	newString = inputString
+
+	for bw in brokenWords:
+
+		restored = bw.replace('\n', '') 
+
+		if restored.lower() in standardDic:
+			newString = newString.replace(bw, restored)
+	return newString
+
+
 def writeTextFile(textContent, filePath):
     with open(filePath, 'w', encoding ='utf-8') as file:
         file.write(textContent)
@@ -56,13 +74,34 @@ def cleanLine(inputText, regPat):
 	return outputText
 
 
+def cleanLine1(inputText):
+	# 15 Chapter name
+	outputText = ''
+	regPat = r'^\n+\d+[\w\s]+\n+$'
+	pattern = re.compile(regPat, re.M)
+	outputText = re.sub(pattern, '', inputText)
+	return outputText
+
+
+def cleanLine2(inputText):
+	# Chapter name 15
+	outputText = ''
+	regPat = r'^\n+[\w\s]+\d+$'
+	pattern = re.compile(regPat, re.M)
+	outputText = re.sub(pattern, '', inputText)
+	return outputText
+
+
 def processText(inFile, outDir):
 	outFilePath = sH.getNormalPath(inFile, outDir)
 	newText = sH.readTextFile(inFile)
-	wordList = getWordList()
-	newText = restoreBrokenWords2(newText, wordList)
-	#regPat = r'\n\s{8}'
-	#newText = cleanJunk(newText, regPat)
+	#wordList = getWordList()
+	#newText = restoreBrokenWords2(newText, wordList)
+	#newText = restoreBrokenWords3(newText, wordList)
+	
+	regPat = r'^\n+PART FOUR\n+$'
+	newText = cleanLine(newText, regPat)
+
 
 	writeTextFile(newText, outFilePath)
 	sH.openDir(outDir)

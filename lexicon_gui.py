@@ -46,7 +46,7 @@ class LexGUI:
         self.tabControl.pack(expand = 1, fill = "both")
 
     def fileDialog(self):
-        self.filename = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/", title = "Select a file", filetypes = (("PDF files", "*.pdf"), ("EPUB files", "*.epub"), ("all files", "*.*")))
+        self.filename = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/ORIGINAL", title = "Select a file", filetypes = (("PDF files", "*.pdf"), ("EPUB files", "*.epub"), ("all files", "*.*")))
         if (self.filename):
             self.filepath.set(self.filename) #set the textbox to the file path
             #self.button2.config(state = "normal")
@@ -116,7 +116,7 @@ class LexGUI:
 
 
     def fileDialog2(self):
-        self.filename21 = filedialog.askopenfilename(initialdir = "/", title = "Select a file", filetypes = (("Text files", "*.txt"),  ("all files", "*.*")))
+        self.filename21 = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/RAWTEXT", title = "Select a file", filetypes = (("Text files", "*.txt"),  ("all files", "*.*")))
         if (self.filename21):
             self.filepath21.set(self.filename21) #set the textbox to the file path
             #self.button2.config(state = "normal")
