@@ -95,12 +95,15 @@ def cleanLine2(inputText):
 def processText(inFile, outDir):
 	outFilePath = sH.getNormalPath(inFile, outDir)
 	newText = sH.readTextFile(inFile)
-	#wordList = getWordList()
-	#newText = restoreBrokenWords2(newText, wordList)
-	#newText = restoreBrokenWords3(newText, wordList)
+	wordList = getWordList()
+	newText = restoreBrokenWords2(newText, wordList)
+	newText = restoreBrokenWords3(newText, wordList)
 	
-	regPat = r'^\n+PART FOUR\n+$'
-	newText = cleanLine(newText, regPat)
+	#regPat = r'\bBut-\n*ler'
+	#newText = re.sub(regPat, 'Butler', newText)
+	
+
+
 
 
 	writeTextFile(newText, outFilePath)

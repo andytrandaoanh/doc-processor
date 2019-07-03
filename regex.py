@@ -1,9 +1,8 @@
 import re
 
 inputString = """
-
-PART ONE
-
+Ash-
+ley
 
 
 """
@@ -16,7 +15,7 @@ PART ONE
 
 
 
-regPat = re.compile(r'^\n+PART TWO\n+$',  re.M)
+regPat = re.compile(r'\bAsh-\n*ley')
 finds = re.findall(regPat, inputString)
 #newText = re.sub(r'\n\s{8}', '', inputString)
 #print(newText) 
