@@ -77,7 +77,7 @@ def cleanLine(inputText, regPat):
 def cleanLine1(inputText):
 	# 15 Chapter name
 	outputText = ''
-	regPat = r'^\n+\d+[\w\s]+\n+$'
+	regPat = r'^\n+\d+[\w\s,-]+\n+$'
 	pattern = re.compile(regPat, re.M)
 	outputText = re.sub(pattern, '', inputText)
 	return outputText
@@ -86,7 +86,7 @@ def cleanLine1(inputText):
 def cleanLine2(inputText):
 	# Chapter name 15
 	outputText = ''
-	regPat = r'^\n+[\w\s]+\d+$'
+	regPat = r'^\n+[\w\s,-]+\d+\n+$'
 	pattern = re.compile(regPat, re.M)
 	outputText = re.sub(pattern, '', inputText)
 	return outputText
@@ -95,9 +95,11 @@ def cleanLine2(inputText):
 def processText(inFile, outDir):
 	outFilePath = sH.getNormalPath(inFile, outDir)
 	newText = sH.readTextFile(inFile)
-	wordList = getWordList()
-	newText = restoreBrokenWords2(newText, wordList)
-	newText = restoreBrokenWords3(newText, wordList)
+	#wordList = getWordList()
+	#newText = restoreBrokenWords2(newText, wordList)
+	#newText = restoreBrokenWords3(newText, wordList)
+	newText=cleanLine1(newText)
+	newText=cleanLine2(newText)
 	
 	#regPat = r'\bBut-\n*ler'
 	#newText = re.sub(regPat, 'Butler', newText)

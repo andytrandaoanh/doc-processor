@@ -1,8 +1,15 @@
 import re
 
-inputString = """
-Ash-
-ley
+inputText = """
+
+
+
+
+
+Start-up Case Studies 217
+
+soon destroy t
+ 
 
 
 """
@@ -13,10 +20,11 @@ ley
 #CASE 2: 6 The Business of Software
 #regPat = re.compile(r'^\n+\d+[\w\s]+\n+$',  re.M)
 
+regPat = r'^\n+[\w\s,-]+\d+\n+$'
+pattern = re.compile(regPat, re.M)
+finds = re.findall(pattern, inputText)
+#outputText = re.sub(pattern, '', inputText)
 
-
-regPat = re.compile(r'\bAsh-\n*ley')
-finds = re.findall(regPat, inputString)
 #newText = re.sub(r'\n\s{8}', '', inputString)
 #print(newText) 
 
